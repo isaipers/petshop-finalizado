@@ -111,7 +111,7 @@ section {
 
 .button-comprar{
     background-color: rgb(100,149,237);
-    width: 450px;
+    width: 300px;
     color: white;
     height: 40px;
     border-radius: 5px;
@@ -219,7 +219,7 @@ ul{
     background-color: rgb(100,149,237);
     color:white;
     width: 100%;
-    height: 15%;
+    height: 17%;
     border-radius: 5px 5px 0 0;
 }
 

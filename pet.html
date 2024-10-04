@@ -20,7 +20,7 @@
     <div class="Icon">
         <a href="carrinho.html"><i class="fa-solid fa-cart-shopping"></i>
         </a>
-    </div>
+    </div>    
     <div class="Icon">
         <a href="#"><i class="fa-solid fa-user"></i> 
         </a>
@@ -143,5 +143,39 @@
 </div>
 </div>
 </footer>
+<script>
+  function addtocarrinho(event) {
+    const item = event.target.closest('.item');
+
+    const nomeProduto = item.querySelector('.item-descricao p').textContent;
+    const precoProduto = item.querySelector('.item-descricao br + p').textContent;
+    const imagemProduto = item.querySelector('.item-img img').src;
+
+    const produto = {
+        nome: nomeProduto,
+        preco: precoProduto,
+        imagem: imagemProduto,
+        quantidade: 1 // Quantidade inicial
+    };
+
+    // Obter carrinho do localStorage ou inicializar um vazio
+    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+    // Verificar se o produto já está no carrinho
+    const produtoExistente = carrinho.find(item => item.nome === produto.nome);
+    if (produtoExistente) {
+        produtoExistente.quantidade += 1; // Se o produto já estiver no carrinho, aumenta a quantidade
+    } else {
+        carrinho.push(produto); // Se for um novo produto, adiciona ao carrinho
+    }
+
+    // Atualizar o carrinho no localStorage
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+    alert(`${produto.nome} foi adicionado ao carrinho!`);
+}
+
+    </script>
+    
 </body>
 </html>

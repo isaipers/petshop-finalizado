@@ -18,9 +18,10 @@
 </div>
 <nav class="navee"> 
     <div class="Icon">
-        <a href="carrinho.html"><i class="fa-solid fa-cart-shopping"></i>
+        <a href="javascript:void(0)" onclick="exibirCarrinho()">
+            <i class="fa-solid fa-cart-shopping"></i>
         </a>
-    </div>
+    </div>    
     <div class="Icon">
         <a href="#"><i class="fa-solid fa-user"></i> 
         </a>
@@ -45,7 +46,9 @@
 <div class="container-produto">
     <div class="tabela">
         <p id="prod">Produto</p>
+        <div id="lista-produtos"></div> <!-- Produtos serão inseridos aqui -->
     </div>
+</div>
 <div class="container-total">
     <div class="pedido">
         <p>Suas compras</p>
@@ -65,7 +68,7 @@
         </div>
         <div class="compras">
             <a href="pet.html">
-                <button>Adicionar mais produtos</button>
+                <button><a href="pet.html">Adicionar mais produtos</a></button>
             </a>
             <button id="fechar-pedido">Finalizar compra</button>
         </div>
@@ -87,6 +90,132 @@
 </div>
 </div>
 </footer>
+<script>
+    // Função para obter o carrinho armazenado no localStorage
+    function getCarrinho() {
+        return JSON.parse(localStorage.getItem('carrinho')) || [];
+    }
+    
+    // Função para atualizar o subtotal e total com base nos itens do carrinho
+    function atualizarTotal() {
+        const carrinho = getCarrinho();
+        const subtotalElement = document.getElementById('subtotal-preco');
+        const entregaElement = document.getElementById('entrega-preco');
+        const totalElement = document.getElementById('total-preco');
+    
+        let subtotal = 0;
+    
+        carrinho.forEach(produto => {
+            const preco = parseFloat(produto.preco.replace('R$', '').replace(',', '.'));
+            subtotal += preco * produto.quantidade;
+        });
+    
+        const entrega = 20.00; // Exemplo de taxa de entrega fixa
+        const total = subtotal + entrega;
+    
+        // Exibir valores
+        subtotalElement.textContent = `R$${subtotal.toFixed(2).replace('.', ',')}`;
+        entregaElement.textContent = `R$${entrega.toFixed(2).replace('.', ',')}`;
+        totalElement.textContent = `R$${total.toFixed(2).replace('.', ',')}`;
+    }
+    
+    function exibirProdutosCarrinho() {
+    const carrinho = getCarrinho();
+    const listaProdutos = document.getElementById('lista-produtos');
+
+    listaProdutos.innerHTML = '';
+
+    // Exibir cada produto
+    carrinho.forEach((produto, index) => {
+        // Criar um elemento para o produto
+        const produtoDiv = document.createElement('div');
+        produtoDiv.className = 'produto-item';
+
+        produtoDiv.innerHTML = `
+            <div class="produto-info">
+                <img src="${produto.imagem}" alt="${produto.nome}" class="produto-img">
+                <p>${produto.nome}</p>
+            </div>
+            <div class="produto-preco">
+                <p>Preço: ${produto.preco}</p>
+            </div>
+            <div class="produto-quantidade">
+                <label for="quantidade-${index}">Quantidade:</label>
+                <input type="number" id="quantidade-${index}" value="${produto.quantidade}" min="1" data-index="${index}" onchange="atualizarQuantidade(this)">
+            </div>
+            <div class="produto-total">
+                <p>Total: R$${(parseFloat(produto.preco.replace('R$', '').replace(',', '.')) * produto.quantidade).toFixed(2).replace('.', ',')}</p>
+            </div>
+            <!-- Botão de Remover Produto -->
+            <button class="remover-produto" onclick="removerProduto(${index})">Remover</button>
+        `;
+
+        // Adicionar o produto ao contêiner de produtos
+        listaProdutos.appendChild(produtoDiv);
+    });
+
+    // Atualizar o total ao exibir os produtos
+    atualizarTotal();
+}
+
+// Função para remover um produto do carrinho
+function removerProduto(index) {
+    const carrinho = getCarrinho();
+
+    // Remover o produto pelo índice
+    carrinho.splice(index, 1);
+
+    // Atualizar o carrinho no localStorage
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+    // Atualizar a exibição dos produtos e o total
+    exibirProdutosCarrinho();
+}
+
+
+    // Função para atualizar a quantidade de um produto no carrinho
+    function atualizarQuantidade(input) {
+        const carrinho = getCarrinho();
+        const index = input.getAttribute('data-index');
+        const novaQuantidade = parseInt(input.value);
+    
+        // Atualizar a quantidade do produto no carrinho
+        carrinho[index].quantidade = novaQuantidade;
+    
+        // Salvar o carrinho atualizado no localStorage
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    
+        // Atualizar a exibição do carrinho e o total
+        exibirProdutosCarrinho();
+    }
+    
+    // Chamar a função ao carregar a página para exibir os itens no carrinho
+    window.onload = exibirProdutosCarrinho;
+    function addtocarrinho(event) {
+    const item = event.target.closest('.item');
+
+    const nomeProduto = item.querySelector('.item-descricao p').textContent;
+    const precoProduto = item.querySelector('.item-descricao br + p').textContent;
+    const imagemProduto = item.querySelector('.item-img img').src;
+
+    const produto = {
+        nome: nomeProduto,
+        preco: precoProduto,
+        imagem: imagemProduto,
+        quantidade: 1 // Quantidade inicial
+    };
+
+    const carrinho = getCarrinho();
+    carrinho.push(produto);
+
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+    alert(`${produto.nome} foi adicionado ao carrinho!`);
+}
+
+    </script>
+    
+    
 </body>
 </html>
 
