@@ -46,7 +46,7 @@
 <div class="container-produto">
     <div class="tabela">
         <p id="prod">Produto</p>
-        <div id="lista-produtos"></div> <!-- Produtos serão inseridos aqui -->
+        <div id="lista-produtos"></div> 
     </div>
 </div>
 <div class="container-total">
@@ -141,7 +141,6 @@
             <div class="produto-total">
                 <p>Total: R$${(parseFloat(produto.preco.replace('R$', '').replace(',', '.')) * produto.quantidade).toFixed(2).replace('.', ',')}</p>
             </div>
-            <!-- Botão de Remover Produto -->
             <button class="remover-produto" onclick="removerProduto(${index})">Remover</button>
         `;
 
