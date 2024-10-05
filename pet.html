@@ -155,21 +155,18 @@
         nome: nomeProduto,
         preco: precoProduto,
         imagem: imagemProduto,
-        quantidade: 1 // Quantidade inicial
+        quantidade: 1 
     };
 
-    // Obter carrinho do localStorage ou inicializar um vazio
     let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
-    // Verificar se o produto já está no carrinho
     const produtoExistente = carrinho.find(item => item.nome === produto.nome);
     if (produtoExistente) {
-        produtoExistente.quantidade += 1; // Se o produto já estiver no carrinho, aumenta a quantidade
+        produtoExistente.quantidade += 1;
     } else {
-        carrinho.push(produto); // Se for um novo produto, adiciona ao carrinho
+        carrinho.push(produto);
     }
-
-    // Atualizar o carrinho no localStorage
+  
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
     alert(`${produto.nome} foi adicionado ao carrinho!`);
