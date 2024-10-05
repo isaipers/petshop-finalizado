@@ -91,12 +91,10 @@
 </div>
 </footer>
 <script>
-    // Função para obter o carrinho armazenado no localStorage
     function getCarrinho() {
         return JSON.parse(localStorage.getItem('carrinho')) || [];
     }
     
-    // Função para atualizar o subtotal e total com base nos itens do carrinho
     function atualizarTotal() {
         const carrinho = getCarrinho();
         const subtotalElement = document.getElementById('subtotal-preco');
@@ -110,10 +108,9 @@
             subtotal += preco * produto.quantidade;
         });
     
-        const entrega = 20.00; // Exemplo de taxa de entrega fixa
+        const entrega = 20.00;
         const total = subtotal + entrega;
-    
-        // Exibir valores
+     
         subtotalElement.textContent = `R$${subtotal.toFixed(2).replace('.', ',')}`;
         entregaElement.textContent = `R$${entrega.toFixed(2).replace('.', ',')}`;
         totalElement.textContent = `R$${total.toFixed(2).replace('.', ',')}`;
@@ -125,9 +122,7 @@
 
     listaProdutos.innerHTML = '';
 
-    // Exibir cada produto
     carrinho.forEach((produto, index) => {
-        // Criar um elemento para o produto
         const produtoDiv = document.createElement('div');
         produtoDiv.className = 'produto-item';
 
@@ -150,46 +145,30 @@
             <button class="remover-produto" onclick="removerProduto(${index})">Remover</button>
         `;
 
-        // Adicionar o produto ao contêiner de produtos
         listaProdutos.appendChild(produtoDiv);
     });
-
-    // Atualizar o total ao exibir os produtos
     atualizarTotal();
 }
 
-// Função para remover um produto do carrinho
 function removerProduto(index) {
     const carrinho = getCarrinho();
 
-    // Remover o produto pelo índice
     carrinho.splice(index, 1);
-
-    // Atualizar o carrinho no localStorage
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
-
-    // Atualizar a exibição dos produtos e o total
     exibirProdutosCarrinho();
 }
 
-
-    // Função para atualizar a quantidade de um produto no carrinho
     function atualizarQuantidade(input) {
         const carrinho = getCarrinho();
         const index = input.getAttribute('data-index');
         const novaQuantidade = parseInt(input.value);
     
-        // Atualizar a quantidade do produto no carrinho
         carrinho[index].quantidade = novaQuantidade;
     
-        // Salvar o carrinho atualizado no localStorage
         localStorage.setItem('carrinho', JSON.stringify(carrinho));
-    
-        // Atualizar a exibição do carrinho e o total
+   
         exibirProdutosCarrinho();
     }
-    
-    // Chamar a função ao carregar a página para exibir os itens no carrinho
     window.onload = exibirProdutosCarrinho;
     function addtocarrinho(event) {
     const item = event.target.closest('.item');
@@ -202,7 +181,7 @@ function removerProduto(index) {
         nome: nomeProduto,
         preco: precoProduto,
         imagem: imagemProduto,
-        quantidade: 1 // Quantidade inicial
+        quantidade: 1
     };
 
     const carrinho = getCarrinho();
