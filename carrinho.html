@@ -108,9 +108,9 @@
             subtotal += preco * produto.quantidade;
         });
     
-        const entrega = 20.00;
+        const entrega = 20.00; 
         const total = subtotal + entrega;
-     
+    
         subtotalElement.textContent = `R$${subtotal.toFixed(2).replace('.', ',')}`;
         entregaElement.textContent = `R$${entrega.toFixed(2).replace('.', ',')}`;
         totalElement.textContent = `R$${total.toFixed(2).replace('.', ',')}`;
@@ -141,11 +141,13 @@
             <div class="produto-total">
                 <p>Total: R$${(parseFloat(produto.preco.replace('R$', '').replace(',', '.')) * produto.quantidade).toFixed(2).replace('.', ',')}</p>
             </div>
+            <!-- Botão de Remover Produto -->
             <button class="remover-produto" onclick="removerProduto(${index})">Remover</button>
         `;
 
         listaProdutos.appendChild(produtoDiv);
     });
+
     atualizarTotal();
 }
 
@@ -153,10 +155,11 @@ function removerProduto(index) {
     const carrinho = getCarrinho();
 
     carrinho.splice(index, 1);
+
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
     exibirProdutosCarrinho();
 }
-
     function atualizarQuantidade(input) {
         const carrinho = getCarrinho();
         const index = input.getAttribute('data-index');
@@ -165,9 +168,10 @@ function removerProduto(index) {
         carrinho[index].quantidade = novaQuantidade;
     
         localStorage.setItem('carrinho', JSON.stringify(carrinho));
-   
+    
         exibirProdutosCarrinho();
     }
+    
     window.onload = exibirProdutosCarrinho;
     function addtocarrinho(event) {
     const item = event.target.closest('.item');
