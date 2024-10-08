@@ -4,6 +4,9 @@
 <link rel ="stylesheet" href="pet.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="css/pet.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -13,10 +16,13 @@
 </a>
 <div class="form">
     <div class="pesquisa">
-    <input class="pesqui" type="search" name="pesquisa" placeholder="O que você deseja"><button class="button" type="submit"><img src="imagens/lupa.png" alt="lupa"></i></button>
+    <input class="pesqui" type="search" name="pesquisa" placeholder="O que você deseja"><button class="buttonpes" type="submit"><img src="imagens/lupa.png" alt="lupa"></i></button>
     </div>
 </div>
 <nav class="navee"> 
+    <div class="Icon">
+    <button id="mode-tema">mudanca para Dark Mode</button>
+    </div>
     <div class="Icon">
         <a href="carrinho.html"><i class="fa-solid fa-cart-shopping"></i>
         </a>
@@ -58,74 +64,95 @@
                         <h3>Desconto relâmpago</h3>
                     </div>
                     <div class="item-img">
-                        <img src="imagens/racao-dog.png" alt="racao-dog">
+                        <img src="imagens/racao-dog.png" alt="Ração para cães">
                     </div>
                     <div class="item-descricao">
                         <p>Ração Pedigree para cães adultos 10kg</p>
-                        <br><p>R$150,00</p>
+                        <br>
+                        <p>R$150,00</p>
                         <button class="button-comprar" onclick="addtocarrinho(event)">Comprar</button>
-                        <li class="item">
-                            <div class="item-header">
-                                <h3>Desconto relâmpago</h3>
-                            </div>
-                            <div class="item-img">
-                                <img src="imagens/racao-cat.png" alt="racao-cat">
-                            </div>
-                            <div class="item-descricao">
-                                <p>Ração Whiskas para gatinhos filhotes 3kg</p>
-                                <br><p>R$75,00</p>
-                                <button class="button-comprar" onclick="addtocarrinho(event)">Comprar</button>
-                                <li class="item">
-                                    <div class="item-header">
-                                        <h3>Desconto relâmpago</h3>
-                                    </div>
-                                    <div class="item-img">
-                                        <img src="imagens/racao-filhote.png" alt="racao-filhote">
-                                    </div>
-                                    <div class="item-descricao">
-                                        <p>Ração Pedigree para cachorros filhotes 100g</p>
-                                        <br><p>R$10,00</p>
-                                        <button class="button-comprar" onclick="addtocarrinho(event)">Comprar</button>
-                                        <li class="item">
-                                            <div class="item-header">
-                                                <h3>Desconto relâmpago</h3>
-                                            </div>
-                                            <div class="item-img">
-                                                <img src="imagens/racao-tartaruga.png" alt="racao-tartaruga">
-                                            </div>
-                                            <div class="item-descricao">
-                                                <p>Ração Reptolife para tartarugas 75g</p>
-                                                <br><p>R$22,50</p>
-                                                <button class="button-comprar" onclick="addtocarrinho(event)">Comprar</button>
-                                                <li class="item">
-                                                    <div class="item-header">
-                                                        <h3>Desconto relâmpago</h3>
-                                                    </div>
-                                                    <div class="item-img">
-                                                        <img src="imagens/racao-passarinho.png" alt="racao-passarinho">
-                                                    </div>
-                                                    <div class="item-descricao">
-                                                        <p>Ração Nutrópica para pássaros 300g</p>
-                                                        <br><p>R$40,00</p>
-                                                        <button class="button-comprar" onclick="addtocarrinho(event)">Comprar</button>
-                                                        <li class="item">
-                                                            <div class="item-header">
-                                                                <h3>Desconto relâmpago</h3>
-                                                            </div>
-                                                            <div class="item-img">
-                                                                <img src="imagens/racao-patin.png" alt="racao-patin">
-                                                            </div>
-                                                            <div class="item-descricao">
-                                                                <p>Ração Purina para patos 2,26kg</p>
-                                                                <br><p>R$173,00</p>
-                                                                <button class="button-comprar" onclick="addtocarrinho(event)">Comprar</button>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="item-header">
+                        <h3>Desconto relâmpago</h3>
+                    </div>
+                    <div class="item-img">
+                        <img src="imagens/racao-cat.png" alt="Ração para gatos">
+                    </div>
+                    <div class="item-descricao">
+                        <p>Ração Whiskas para gatinhos filhotes 3kg</p>
+                        <br>
+                        <p>R$75,00</p>
+                        <button class="button-comprar" onclick="addtocarrinho(event)">Comprar</button>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="item-header">
+                        <h3>Desconto relâmpago</h3>
+                    </div>
+                    <div class="item-img">
+                        <img src="imagens/racao-filhote.png" alt="Ração para filhotes">
+                    </div>
+                    <div class="item-descricao">
+                        <p>Ração Pedigree para cachorros filhotes 100g</p>
+                        <br>
+                        <p>R$10,00</p>
+                        <button class="button-comprar" onclick="addtocarrinho(event)">Comprar</button>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="item-header">
+                        <h3>Desconto relâmpago</h3>
+                    </div>
+                    <div class="item-img">
+                        <img src="imagens/racao-tartaruga.png" alt="Ração para tartarugas">
+                    </div>
+                    <div class="item-descricao">
+                        <p>Ração Reptolife para tartarugas 75g</p>
+                        <br>
+                        <p>R$22,50</p>
+                        <button class="button-comprar" onclick="addtocarrinho(event)">Comprar</button>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="item-header">
+                        <h3>Desconto relâmpago</h3>
+                    </div>
+                    <div class="item-img">
+                        <img src="imagens/racao-passarinho.png" alt="Ração para pássaros">
+                    </div>
+                    <div class="item-descricao">
+                        <p>Ração Nutrópica para pássaros 300g</p>
+                        <br>
+                        <p>R$40,00</p>
+                        <button class="button-comprar" onclick="addtocarrinho(event)">Comprar</button>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="item-header">
+                        <h3>Desconto relâmpago</h3>
+                    </div>
+                    <div class="item-img">
+                        <img src="imagens/racao-patin.png" alt="Ração para patos">
+                    </div>
+                    <div class="item-descricao">
+                        <p>Ração Purina para patos 2,26kg</p>
+                        <br>
+                        <p>R$173,00</p>
+                        <button class="button-comprar" onclick="addtocarrinho(event)">Comprar</button>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
-
 </section>
+
 
 <footer>
     <div class="footer">
@@ -144,7 +171,20 @@
 </div>
 </footer>
 <script>
-  function addtocarrinho(event) {
+   document.querySelector('#mode-tema').addEventListener('click', () => {
+    const body = document.querySelector('body');
+    const button = document.querySelector('#mode-tema');
+
+    body.classList.toggle('dark-mode');
+
+    if (body.classList.contains('dark-mode')) {
+        button.textContent = 'Para o Light Mode';
+    } else {
+        button.textContent = 'Para o Dark Mode';
+    }
+});
+
+function addtocarrinho(event) {
     const item = event.target.closest('.item');
 
     const nomeProduto = item.querySelector('.item-descricao p').textContent;
@@ -162,14 +202,25 @@
 
     const produtoExistente = carrinho.find(item => item.nome === produto.nome);
     if (produtoExistente) {
-        produtoExistente.quantidade += 1;
+        produtoExistente.quantidade += 1; 
     } else {
-        carrinho.push(produto);
+        carrinho.push(produto); 
     }
-  
+
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
-    alert(`${produto.nome} foi adicionado ao carrinho!`);
+    Swal.fire({
+        title: 'Adicionado ao Carrinho!',
+        text: `${produto.nome} foi adicionado ao carrinho!`,
+        imageUrl: imagemProduto, 
+        imageWidth: 100,
+        imageHeight: 100,
+        imageAlt: nomeProduto,
+        icon: 'success', 
+        confirmButtonText: 'Ok',
+        background: '#f7f7f7',
+        confirmButtonColor: '#3085d6',
+    });
 }
 
     </script>
